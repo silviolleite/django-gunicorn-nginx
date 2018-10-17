@@ -8,6 +8,8 @@ As maiores dificuldades que os iniciantes tem quando começam a utilizar o Djang
 4. Consigo montar um servidor na minha máquina?
 
 Okay! Este passo a passo irá ajudar você a configurar um servidor para sua aplicação Django no Ubuntu(Linux).
+O fluxo do reuqest será como na imagem.
+![](https://github.com/silviolleite/django-gunicorn-nginx/blob/master/request_nginx.png)
 
 ## Vamos lá!
 

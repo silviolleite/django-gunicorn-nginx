@@ -1,0 +1,31 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name exemplo.com;
+ # altere com o caminho da pasta de logs
+ access_log /yourpathto/logs/access.log;
+ error_log /yourpathto/logs/error.log;
+
+
+ location / {
+ # redireciona todas as requisições no "/" para o Gunicorn
+ proxy_pass http://127.0.0.1:8001;
+
+ #As proximas linhas passam o IP real para o gunicorn nao achar que sao acessos locais
+ proxy_pass_header Server;
+ proxy_set_header X-Forwarded-Host $server_name;
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_set_header Host $http_host;
+
+
+ }
+
+# O Nginx que servirá os arquivos estáticos
+location /static/ {
+        autoindex on;
+        # altere com o caminho da pasta dos staticfiles do projeto
+        alias   /youpathto/staticfiles/;
+    }
+}
